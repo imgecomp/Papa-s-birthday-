@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Legend Was Born Today 👑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg1: #050018;
+      --bg2: #22002a;
+      --accent: #ffb347;
+      --text-main: #ffffff;
+      --text-soft: #ffd9ff;
+      --btn: #ff3ba5;
+      --btn-glow: 0 0 20px rgba(255, 59, 165, 0.9);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      min-height:100vh;
+      font-family:"Poppins",system-ui,sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at top,#53106a 0,transparent 45%),
+        radial-gradient(circle at bottom,#000 0,#050018 40%,#000 100%);
+      color:var(--text-main);
+      overflow:hidden;
+    }
+
+    /* soft floating bokeh lights */
+    .bokeh{
+      position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+    }
+    .bokeh span{
+      position:absolute;width:14px;height:14px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,255,255,0.9),transparent 70%);
+      opacity:0.4;animation:float-bokeh 16s linear infinite;filter:blur(1px);
+    }
+    .bokeh span:nth-child(1){left:10%;animation-delay:-2s;}
+    .bokeh span:nth-child(2){left:25%;animation-delay:-5s;}
+    .bokeh span:nth-child(3){left:40%;animation-delay:-8s;}
+    .bokeh span:nth-child(4){left:60%;animation-delay:-3s;}
+    .bokeh span:nth-child(5){left:75%;animation-delay:-9s;}
+    .bokeh span:nth-child(6){left:90%;animation-delay:-12s;}
+    @keyframes float-bokeh{
+      0%{transform:translate3d(0,110vh,0);}
+      100%{transform:translate3d(0,-110vh,0);}
+    }
+
+    .frame{
+      position:relative;
+      width:min(420px,94vw);
+      height:min(750px,94vh);
+      border-radius:26px;
+      padding:40px 18px 32px;
+      background:radial-gradient(circle at top,rgba(0,0,0,0.45),transparent 52%);
+      backdrop-filter:blur(18px);
+      box-shadow:0 30px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.14);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      z-index:1;
+    }
+
+    .top-bar{
+      position:absolute;top:12px;left:50%;transform:translateX(-50%);
+      padding:4px 10px;border-radius:999px;
+      font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,0.7);
+      background:rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.25);
+      backdrop-filter:blur(10px);
+    }
+
+    /* small floating character – can be read as “super dad” icon */
+    .kawaii-wrap{
+      margin-top:90px;margin-bottom:20px;
+      animation:float 4s ease-in-out infinite;
+    }
+    .kawaii-body{
+      position:relative;width:130px;height:120px;
+      border-radius:50% 50% 45% 45%;
+      background:#fff;
+      box-shadow:0 18px 30px rgba(0,0,0,0.4),0 0 40px rgba(255,255,255,0.7);
+    }
+    .ear{
+      position:absolute;width:30px;height:30px;background:#37474f;
+      border-radius:16px 16px 0 0;top:-16px;
+    }
+    .ear.left{left:18px;}
+    .ear.right{right:18px;}
+    .cheek{
+      position:absolute;width:20px;height:12px;border-radius:999px;
+      background:#ff8fa3;top:58px;filter:blur(.3px);
+    }
+    .cheek.left{left:22px;}
+    .cheek.right{right:22px;}
+    .eye{
+      position:absolute;width:10px;height:14px;background:#333;
+      border-radius:999px;top:40px;
+    }
+    .eye.left{left:38px;}
+    .eye.right{right:38px;}
+    .mouth{
+      position:absolute;width:18px;height:12px;border-radius:0 0 18px 18px;
+      border-bottom:3px solid #333;left:0;right:0;margin:auto;top:52px;
+    }
+    .little-body{
+      position:absolute;width:40px;height:30px;background:#000;
+      border-radius:0 0 15px 15px;bottom:-24px;left:0;right:0;margin:auto;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+    }
+
+    .heading-main{
+      font-family:"Pacifico",cursive;
+      color:#ffb8ff;
+      text-shadow:0 0 12px rgba(255,184,255,0.9),0 0 24px rgba(255,78,219,0.7);
+      font-size:30px;
+      line-height:1.45;
+      margin-bottom:6px;
+    }
+    .heading-main .age{
+      color:#ffd86b;
+      text-shadow:0 0 12px rgba(255,216,107,0.9);
+      font-size:34px;
+    }
+    .heading-sub{
+      font-size:14px;
+      color:var(--text-soft);
+      margin-bottom:36px;
+    }
+    .heading-sub strong{
+      color:#ffeaa7;
+    }
+
+    .cta-btn{
+      margin-top:auto;margin-bottom:40px;
+      padding:14px 48px;border-radius:999px;border:none;outline:none;
+      background-image:linear-gradient(135deg,#ff3ba5,#ff6bd9);
+      color:#fff;font-size:15px;font-weight:600;
+      letter-spacing:0.12em;text-transform:uppercase;
+      cursor:pointer;box-shadow:var(--btn-glow);
+      position:relative;overflow:hidden;
+      transform-origin:center;
+      transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;
+    }
+    .cta-btn::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg,rgba(255,255,255,0.65),transparent 60%);
+      mix-blend-mode:screen;opacity:.5;
+      transform:translateX(-100%);animation:shine 3.2s ease-in-out infinite;
+    }
+    @keyframes shine{
+      0%{transform:translateX(-120%);}
+      40%{transform:translateX(120%);}
+      100%{transform:translateX(120%);}
+    }
+    .cta-btn:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 0 26px rgba(255,59,165,1),0 14px 26px rgba(0,0,0,0.9);
+      filter:saturate(1.2);
+    }
+    .cta-btn:active{
+      transform:translateY(0) scale(.97);
+      box-shadow:0 0 18px rgba(255,59,165,0.85),0 10px 20px rgba(0,0,0,0.9);
+    }
+    .cta-btn .icon{
+      margin-left:8px;
+      font-size:18px;
+    }
+
+    .bottom-note{
+      position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+      font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+<body>
+  <!-- floating background lights -->
+  <div class="bokeh">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="frame">
+    <!-- replace DAD'S NAME with your father's name -->
+    <div class="top-bar">a little surprise for DAD'S NAME</div>
+
+    <div class="kawaii-wrap">
+      <div class="kawaii-body">
+        <div class="ear left"></div><div class="ear right"></div>
+        <div class="eye left"></div><div class="eye right"></div>
+        <div class="cheek left"></div><div class="cheek right"></div>
+        <div class="mouth"></div><div class="little-body"></div>
+      </div>
+    </div>
+
+    <h1 class="heading-main">
+      A legend was born today<br />
+      <span class="age">xx</span> years ago!
+    </h1>
+
+    <p class="heading-sub">
+      Happy Birthday, <strong>Papa</strong>!  
+      Your kid has prepared a small surprise for you.
+    </p>
+
+    <!-- LINK TO CAKE PAGE FOR FATHER -->
+    <a href="cake.html">
+      <button class="cta-btn">
+        Begin your surprise <span class="icon">🎁</span>
+      </button>
+    </a>
+
+    <div class="bottom-note">made with love by your child</div>
+  </div>
+</body>
+</html>
