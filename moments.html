@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Some Dad & Me Moments 💞</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg1:#050018;--bg2:#22002a;
+      --text-main:#fff;--text-soft:#ffd9ff;
+      --btn:#ff3ba5;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      min-height:100vh;
+      font-family:"Poppins",system-ui,sans-serif;
+      display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(circle at top,#53106a 0,transparent 45%),
+        radial-gradient(circle at bottom,#000 0,#050018 40%,#000 100%);
+      color:var(--text-main);
+      overflow:hidden;
+    }
+
+    .frame{
+      position:relative;
+      width:min(420px,94vw);height:min(750px,94vh);
+      border-radius:26px;
+      padding:32px 18px 26px;
+      background:radial-gradient(circle at top,rgba(0,0,0,0.45),transparent 52%);
+      box-shadow:0 30px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.14);
+      backdrop-filter:blur(18px);
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;overflow:hidden;
+    }
+
+    /* bunting at top */
+    .decor{
+      position:absolute;top:0;left:0;right:0;height:110px;
+      display:flex;justify-content:center;align-items:flex-start;
+      pointer-events:none;
+    }
+    .flags{display:flex;gap:6px;margin-top:10px;position:relative;}
+    .flag{
+      width:30px;height:30px;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      background:#ff7675;box-shadow:0 4px 10px rgba(0,0,0,0.6);
+    }
+    .flag:nth-child(2){background:#ffeaa7;}
+    .flag:nth-child(3){background:#74b9ff;}
+    .flag:nth-child(4){background:#55efc4;}
+    .flag:nth-child(5){background:#fd79a8;}
+
+    .spark{
+      position:absolute;width:6px;height:6px;border-radius:50%;
+      background:radial-gradient(circle,#fff,#ffeaa7 40%,transparent 70%);
+      box-shadow:0 0 10px rgba(255,255,255,0.9);
+      animation:twinkle 2s ease-in-out infinite alternate;
+    }
+    .spark.s1{top:-4px;left:5px;}
+    .spark.s2{top:2px;left:65px;animation-delay:-.5s;}
+    .spark.s3{top:-6px;left:130px;animation-delay:-1s;}
+    .spark.s4{top:0;left:195px;animation-delay:-1.4s;}
+    .spark.s5{top:-3px;left:255px;animation-delay:-1.9s;}
+    @keyframes twinkle{
+      0%{transform:scale(.5);opacity:.4;}
+      100%{transform:scale(1.2);opacity:1;}
+    }
+
+    h2{
+      margin-top:92px;
+      font-family:"Pacifico",cursive;
+      font-size:26px;
+      color:#ffb8ff;
+      text-shadow:0 0 14px rgba(255,184,255,0.9),0 0 26px rgba(255,78,219,0.8);
+    }
+    .sub{
+      font-size:13px;margin-top:4px;margin-bottom:18px;
+      color:rgba(255,255,255,0.8);
+    }
+
+    /* container for radios + stack */
+    .stack-area{
+      position:relative;
+      width:240px;
+      height:290px;
+      margin-top:14px;
+    }
+
+    .stack-wrapper{
+      position:absolute;
+      inset:0;
+    }
+
+    .stack-toggle{display:none;}
+
+    .photo-card{
+      position:absolute;
+      inset:0;
+      border-radius:26px;
+      background:radial-gradient(circle at top,#2d0037,#120016);
+      box-shadow:0 18px 36px rgba(0,0,0,0.9);
+      padding:10px;
+      display:flex;align-items:center;justify-content:center;
+      transform-origin:center center;
+      transition:transform .55s cubic-bezier(.19,.69,.26,1),
+                 opacity  .55s cubic-bezier(.19,.69,.26,1);
+      cursor:pointer;
+    }
+
+    .photo-inner{
+      width:100%;height:100%;
+      border-radius:20px;
+      overflow:hidden;
+      position:relative;
+      border:3px solid #ff6bd9;
+      box-shadow:
+        0 0 16px rgba(255,107,217,0.9),
+        0 0 30px rgba(0,0,0,0.9);
+    }
+    .photo-inner img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .photo-inner::before{
+      content:"";
+      position:absolute;inset:0;
+      background:radial-gradient(circle at top,rgba(255,255,255,0.18),transparent 60%);
+      mix-blend-mode:screen;
+    }
+
+    /* stacked positions */
+    .card1{transform:translateY(0) scale(1);z-index:4;}
+    .card2{transform:translateY(6px) scale(.985);z-index:3;opacity:.97;}
+    .card3{transform:translateY(12px) scale(.97);z-index:2;opacity:.93;}
+    .card4{transform:translateY(18px) scale(.955);z-index:1;opacity:.9;}
+
+    /* swipe out order */
+    #c1:checked ~ .stack-wrapper .card1{
+      transform:translateX(-140%) rotate(-4deg);
+      opacity:0;
+    }
+    #c1:checked ~ .stack-wrapper .card2{
+      transform:translateY(0) scale(1);z-index:4;opacity:1;
+    }
+    #c1:checked ~ .stack-wrapper .card3{
+      transform:translateY(6px) scale(.985);z-index:3;opacity:.97;
+    }
+    #c1:checked ~ .stack-wrapper .card4{
+      transform:translateY(12px) scale(.97);z-index:2;opacity:.93;
+    }
+
+    #c2:checked ~ .stack-wrapper .card2{
+      transform:translateX(-140%) rotate(-4deg);
+      opacity:0;
+    }
+    #c2:checked ~ .stack-wrapper .card3{
+      transform:translateY(0) scale(1);z-index:4;opacity:1;
+    }
+    #c2:checked ~ .stack-wrapper .card4{
+      transform:translateY(6px) scale(.985);z-index:3;opacity:.97;
+    }
+
+    #c3:checked ~ .stack-wrapper .card3{
+      transform:translateX(-140%) rotate(-4deg);
+      opacity:0;
+    }
+    #c3:checked ~ .stack-wrapper .card4{
+      transform:translateY(0) scale(1);z-index:4;opacity:1;
+    }
+
+    #c4:checked ~ .stack-wrapper .card4{
+      transform:translateX(-140%) rotate(-4deg);
+      opacity:0;
+    }
+
+    .btn{
+      margin-top:28px;margin-bottom:20px;
+      padding:12px 40px;border-radius:999px;border:none;
+      background-image:linear-gradient(135deg,#ff3ba5,#ff6bd9);
+      color:#fff;font-size:14px;font-weight:600;
+      letter-spacing:0.14em;text-transform:uppercase;
+      box-shadow:0 0 20px rgba(255,59,165,0.9),0 14px 24px rgba(0,0,0,0.9);
+      cursor:pointer;position:relative;overflow:hidden;
+      text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+    }
+    .btn::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg,rgba(255,255,255,0.7),transparent 60%);
+      mix-blend-mode:screen;opacity:.6;
+      transform:translateX(-120%);animation:shine 3s ease-in-out infinite;
+    }
+    @keyframes shine{
+      0%{transform:translateX(-120%);}
+      40%{transform:translateX(120%);}
+      100%{transform:translateX(120%);}
+    }
+
+    .bottom-note{
+      position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+      font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="decor">
+      <div class="flags">
+        <div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div>
+
+        <div class="spark s1"></div><div class="spark s2"></div>
+        <div class="spark s3"></div><div class="spark s4"></div>
+        <div class="spark s5"></div>
+      </div>
+    </div>
+
+    <h2>Some Dad & Me Moments</h2>
+    <p class="sub">(Tap through the cards, Papa)</p>
+
+    <div class="stack-area">
+      <!-- radios controlling which card goes out next -->
+      <input type="radio" name="card" id="c1" class="stack-toggle" />
+      <input type="radio" name="card" id="c2" class="stack-toggle" />
+      <input type="radio" name="card" id="c3" class="stack-toggle" />
+      <input type="radio" name="card" id="c4" class="stack-toggle" />
+
+      <div class="stack-wrapper">
+        <label for="c1" class="photo-card card1">
+          <div class="photo-inner">
+            <!-- replace with your photo of you & dad -->
+            <img src="dad1.jpg" alt="Moment 1 with Papa" />
+          </div>
+        </label>
+
+        <label for="c2" class="photo-card card2">
+          <div class="photo-inner">
+            <img src="dad2.jpg" alt="Moment 2 with Papa" />
+          </div>
+        </label>
+
+        <label for="c3" class="photo-card card3">
+          <div class="photo-inner">
+            <img src="dad3.jpg" alt="Moment 3 with Papa" />
+          </div>
+        </label>
+
+        <label for="c4" class="photo-card card4">
+          <div class="photo-inner">
+            <img src="dad4.jpg" alt="Moment 4 with Papa" />
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <a href="message.html" class="btn">
+      💌 Open your message
+    </a>
+
+    <div class="bottom-note">step 4 • our memories</div>
+  </div>
+</body>
+</html>
