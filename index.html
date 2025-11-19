@@ -76,43 +76,28 @@
       backdrop-filter:blur(10px);
     }
 
-    /* small floating character – can be read as “super dad” icon */
-    .kawaii-wrap{
-      margin-top:90px;margin-bottom:20px;
+    /* GIF / avatar container */
+    .avatar-wrap{
+      margin-top:90px;
+      margin-bottom:20px;
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      background:#ffffff;
+      box-shadow:0 18px 30px rgba(0,0,0,0.4),0 0 40px rgba(255,255,255,0.7);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       animation:float 4s ease-in-out infinite;
     }
-    .kawaii-body{
-      position:relative;width:130px;height:120px;
-      border-radius:50% 50% 45% 45%;
-      background:#fff;
-      box-shadow:0 18px 30px rgba(0,0,0,0.4),0 0 40px rgba(255,255,255,0.7);
+    .avatar-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;   /* your GIF or photo fills the circle */
+      display:block;
     }
-    .ear{
-      position:absolute;width:30px;height:30px;background:#37474f;
-      border-radius:16px 16px 0 0;top:-16px;
-    }
-    .ear.left{left:18px;}
-    .ear.right{right:18px;}
-    .cheek{
-      position:absolute;width:20px;height:12px;border-radius:999px;
-      background:#ff8fa3;top:58px;filter:blur(.3px);
-    }
-    .cheek.left{left:22px;}
-    .cheek.right{right:22px;}
-    .eye{
-      position:absolute;width:10px;height:14px;background:#333;
-      border-radius:999px;top:40px;
-    }
-    .eye.left{left:38px;}
-    .eye.right{right:38px;}
-    .mouth{
-      position:absolute;width:18px;height:12px;border-radius:0 0 18px 18px;
-      border-bottom:3px solid #333;left:0;right:0;margin:auto;top:52px;
-    }
-    .little-body{
-      position:absolute;width:40px;height:30px;background:#000;
-      border-radius:0 0 15px 15px;bottom:-24px;left:0;right:0;margin:auto;
-    }
+
     @keyframes float{
       0%,100%{transform:translateY(0);}
       50%{transform:translateY(-10px);}
@@ -191,16 +176,12 @@
   </div>
 
   <div class="frame">
-    <!-- replace DAD'S NAME with your father's name -->
-    <div class="top-bar">एक छोटा सा सरप्राइस आपके लिए </div>
+    <div class="top-bar">✨एक छोटा सा सरप्राइस आपके लिए✨</div>
 
-    <div class="kawaii-wrap">
-      <div class="kawaii-body">
-        <div class="ear left"></div><div class="ear right"></div>
-        <div class="eye left"></div><div class="eye right"></div>
-        <div class="cheek left"></div><div class="cheek right"></div>
-        <div class="mouth"></div><div class="little-body"></div>
-      </div>
+    <!-- PUT YOUR GIF OR PHOTO HERE -->
+    <!-- Example: <img src="papa.gif" alt="Papa" /> -->
+    <div class="avatar-wrap">
+      <img src="video.mp4" alt="Papa" />
     </div>
 
     <h1 class="heading-main">
