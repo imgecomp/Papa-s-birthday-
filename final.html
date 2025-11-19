@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>One Last Thing 🎁</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg1:#050018;--bg2:#22002a;
+      --text-main:#ffffff;--text-soft:#ffd9ff;
+      --btn:#ff3ba5;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      min-height:100vh;
+      font-family:"Poppins",system-ui,sans-serif;
+      display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(circle at top,#53106a 0,transparent 45%),
+        radial-gradient(circle at bottom,#000 0,#050018 40%,#000 100%);
+      color:var(--text-main);
+      overflow:hidden;
+    }
+
+    .frame{
+      position:relative;
+      width:min(420px,94vw);height:min(750px,94vh);
+      border-radius:26px;
+      padding:32px 18px 26px;
+      background:radial-gradient(circle at top,rgba(0,0,0,0.45),transparent 52%);
+      box-shadow:0 30px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.14);
+      backdrop-filter:blur(18px);
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;overflow:hidden;
+    }
+
+    /* bunting */
+    .decor{
+      position:absolute;top:0;left:0;right:0;height:110px;
+      display:flex;justify-content:center;align-items:flex-start;
+      pointer-events:none;
+    }
+    .flags{display:flex;gap:6px;margin-top:10px;position:relative;}
+    .flag{
+      width:30px;height:30px;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      background:#ff7675;box-shadow:0 4px 10px rgba(0,0,0,0.6);
+    }
+    .flag:nth-child(2){background:#ffeaa7;}
+    .flag:nth-child(3){background:#74b9ff;}
+    .flag:nth-child(4){background:#55efc4;}
+    .flag:nth-child(5){background:#fd79a8;}
+
+    .spark{
+      position:absolute;width:6px;height:6px;border-radius:50%;
+      background:radial-gradient(circle,#fff,#ffeaa7 40%,transparent 70%);
+      box-shadow:0 0 10px rgba(255,255,255,0.9);
+      animation:twinkle 2s ease-in-out infinite alternate;
+    }
+    .spark.s1{top:-4px;left:5px;}
+    .spark.s2{top:2px;left:65px;animation-delay:-.5s;}
+    .spark.s3{top:-6px;left:130px;animation-delay:-1s;}
+    .spark.s4{top:0;left:195px;animation-delay:-1.4s;}
+    .spark.s5{top:-3px;left:255px;animation-delay:-1.9s;}
+    @keyframes twinkle{
+      0%{transform:scale(.5);opacity:.4;}
+      100%{transform:scale(1.2);opacity:1;}
+    }
+
+    h2{
+      margin-top:94px;
+      font-family:"Pacifico",cursive;
+      font-size:26px;
+      color:#ffb8ff;
+      text-shadow:0 0 14px rgba(255,184,255,0.9),0 0 26px rgba(255,78,219,0.8);
+    }
+    .sub{
+      font-size:13px;margin-top:4px;margin-bottom:24px;
+      color:var(--text-soft);
+    }
+
+    /* toggle controller */
+    #gift-toggle{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    /* GIFT – flat 2.5D style */
+    .gift-stage{
+      flex:1;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .gift-flat{
+      position:relative;
+      width:140px;
+      height:150px;
+      cursor:pointer;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      animation:bob 2.4s ease-in-out infinite;
+    }
+
+    @keyframes bob{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-8px);}
+    }
+
+    .gift-shadow{
+      position:absolute;
+      bottom:6px;left:50%;
+      transform:translateX(-50%);
+      width:110px;height:26px;
+      background:radial-gradient(circle,#000000aa,#00000000 70%);
+      filter:blur(3px);
+      opacity:.7;
+    }
+
+    .gift-body{
+      position:absolute;
+      bottom:14px;
+      width:110px;height:90px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#ff3b6b,#ff7e84);
+      box-shadow:0 18px 34px rgba(0,0,0,0.9);
+      overflow:hidden;
+    }
+
+    .gift-dots{
+      position:absolute;
+      inset:0;
+      background-image:
+        radial-gradient(circle,#ffffff 0,#ffffff 18%,transparent 20%),
+        radial-gradient(circle,#ffffff 0,#ffffff 18%,transparent 20%);
+      background-position:0 0,12px 12px;
+      background-size:24px 24px;
+      opacity:.8;
+      mix-blend-mode:screen;
+    }
+
+    .gift-ribbon-vert,
+    .gift-ribbon-horiz{
+      position:absolute;
+      background:linear-gradient(180deg,#ffeaa7,#fff3c0);
+    }
+
+    .gift-ribbon-vert{
+      width:20px;top:0;bottom:0;left:50%;
+      transform:translateX(-50%);
+      box-shadow:0 0 12px rgba(255,255,255,0.8);
+    }
+
+    .gift-ribbon-horiz{
+      height:18px;left:0;right:0;top:52%;
+      box-shadow:0 0 12px rgba(255,255,255,0.8);
+    }
+
+    .gift-lid{
+      position:absolute;
+      bottom:86px;
+      width:122px;height:40px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#ff6bd9,#ff3ba5);
+      box-shadow:0 14px 20px rgba(0,0,0,0.7);
+      transform-origin:center bottom;
+      transition:transform .9s cubic-bezier(.25,.8,.25,1.2);
+    }
+
+    .gift-lid-top{
+      position:absolute;inset:4px 6px;
+      border-radius:14px;
+      background:linear-gradient(135deg,#ffe6ff,#ffb8ff);
+    }
+
+    .gift-bow{
+      position:absolute;
+      top:-8px;left:50%;
+      transform:translateX(-50%);
+      width:70px;height:40px;
+    }
+
+    .gift-bow .loop{
+      position:absolute;width:32px;height:22px;border-radius:50%;
+      background:radial-gradient(circle at 30% 20%,#ffe6ff,#ff3ba5);
+      box-shadow:0 0 12px rgba(255,107,217,0.9);
+    }
+    .gift-bow .loop.left{
+      left:0;
+      transform:rotate(-20deg);
+    }
+    .gift-bow .loop.right{
+      right:0;
+      transform:rotate(20deg);
+    }
+    .gift-bow .knot{
+      position:absolute;left:50%;top:10px;
+      transform:translateX(-50%);
+      width:16px;height:16px;border-radius:50%;
+      background:linear-gradient(135deg,#ffe6ff,#ff3ba5);
+      box-shadow:0 0 10px rgba(255,255,255,0.9);
+    }
+
+    /* final card */
+    .final-card-wrap{
+      position:absolute;
+      left:50%;bottom:46px;
+      transform:translateX(-50%) translateY(260px);
+      width:92%;max-width:360px;
+      opacity:0;
+      transition:transform .8s cubic-bezier(.25,.8,.25,1.2),
+                 opacity .8s ease;
+    }
+
+    .final-card{
+      border-radius:26px;
+      padding:24px 20px 22px;
+      background:radial-gradient(circle at left,#ea5cff,#8e2de2);
+      box-shadow:0 24px 42px rgba(0,0,0,0.95);
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .final-card::before{
+      content:"";
+      position:absolute;inset:0;
+      background:radial-gradient(circle at top,rgba(255,255,255,0.2),transparent 65%);
+      mix-blend-mode:screen;
+      opacity:.8;
+    }
+
+    .final-inner{
+      position:relative;z-index:1;
+      display:flex;flex-direction:column;align-items:center;
+    }
+
+    .kitty-box{
+      width:110px;height:110px;
+      border-radius:26px;
+      background:#ffffff;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 14px 26px rgba(0,0,0,0.8);
+      margin-bottom:12px;
+      position:relative;
+    }
+    .kitty-box::before{
+      content:"💙";
+      font-size:34px;
+    }
+
+    .final-text-main{
+      font-size:15px;
+      color:#ffeaa7;
+      margin-bottom:6px;
+    }
+    .final-text-sub{
+      font-size:13px;
+      line-height:1.7;
+      color:#fffdfd;
+    }
+
+    .replay-btn{
+      margin-top:16px;
+      padding:11px 40px;
+      border-radius:999px;
+      border:none;
+      background-image:linear-gradient(135deg,#ff3ba5,#ff6bd9);
+      color:#fff;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      box-shadow:0 0 20px rgba(255,59,165,0.95),0 14px 26px rgba(0,0,0,0.95);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      position:relative;
+      overflow:hidden;
+    }
+    .replay-btn::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg,rgba(255,255,255,0.7),transparent 60%);
+      mix-blend-mode:screen;opacity:.6;
+      transform:translateX(-120%);
+      animation:shine-btn 3s ease-in-out infinite;
+    }
+    @keyframes shine-btn{
+      0%{transform:translateX(-120%);}
+      40%{transform:translateX(120%);}
+      100%{transform:translateX(120%);}
+    }
+
+    .bottom-note{
+      position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+      font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(255,255,255,0.45);
+    }
+
+    /* open state */
+    #gift-toggle:checked ~ .frame .gift-flat{
+      animation:none;
+    }
+    #gift-toggle:checked ~ .frame .gift-lid{
+      transform:rotateX(-70deg) translateY(-4px);
+    }
+    #gift-toggle:checked ~ .frame .final-card-wrap{
+      transform:translateX(-50%) translateY(0);
+      opacity:1;
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="gift-toggle" />
+
+  <div class="frame">
+    <div class="decor">
+      <div class="flags">
+        <div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div>
+
+        <div class="spark s1"></div><div class="spark s2"></div>
+        <div class="spark s3"></div><div class="spark s4"></div>
+        <div class="spark s5"></div>
+      </div>
+    </div>
+
+    <h2>One Last Thing, Papa...</h2>
+    <p class="sub">Tap the gift to open it</p>
+
+    <div class="gift-stage">
+      <label for="gift-toggle" class="gift-flat">
+        <div class="gift-shadow"></div>
+
+        <div class="gift-body">
+          <div class="gift-dots"></div>
+          <div class="gift-ribbon-vert"></div>
+          <div class="gift-ribbon-horiz"></div>
+        </div>
+
+        <div class="gift-lid">
+          <div class="gift-lid-top"></div>
+          <div class="gift-bow">
+            <span class="loop left"></span>
+            <span class="loop right"></span>
+            <span class="knot"></span>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <div class="final-card-wrap">
+      <div class="final-card">
+        <div class="final-inner">
+          <div class="kitty-box"></div>
+
+          <div class="final-text-main">
+            Lots of love for you, Papa 💙
+          </div>
+          <div class="final-text-sub">
+            Once again, happy birthday to the man who means the world to me.
+            Thank you for every lesson, every laugh and every time you quietly
+            stood behind me. You are my biggest blessing and my forever hero.
+          </div>
+
+          <a href="index.html" class="replay-btn">
+            ⟲ Watch again
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-note">the end • made with love</div>
+  </div>
+</body>
+</html>
