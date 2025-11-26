@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Passcode Page</title>
+  <style>
+body {
+  background: #120920;
+  color: #fff;
+  font-family: 'Quicksand', 'Montserrat', sans-serif;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+#passcodePage {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: #120920;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.passcode-box {
+  background: rgba(28,8,44,.85);
+  border-radius: 18px;
+  padding: 48px 36px;
+  box-shadow: 0 6px 36px #720d2f45;
+  text-align: center;
+  width: 340px;
+}
+.passcode-box h2 {
+  color: #ffe57f;
+  font-family: 'Quicksand',sans-serif;
+  font-size: 1.35em;
+  margin-bottom: 1.2em;
+}
+.passcode-box input {
+  font-size: 1.19em;
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.passcode-box button {
+  background: #ea4c89;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 32px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background 0.19s;
+}
+.passcode-box button:hover { background: #b91368; }
+#cancelBtn {
+  background: #2b2441;
+  color: #c1b7e2;
+}
+#passcodeMsg {
+  font-size: 1em;
+  min-height: 2em;
+  margin-top: 7px;
+  color: #ff8a80;
+  letter-spacing: .5px;
+}
+  </style>
+</head>
+<body>
+  <!-- Passcode Screen -->
+  <div id="passcodePage">
+    <div class="passcode-box">
+      <h2>Enter the 4-digit passcode for access.</h2>
+      <input type="text" id="passcodeInput" maxlength="4" autocomplete="off" autofocus>
+      <br>
+      <button id="enterBtn">Enter</button>
+      <button id="cancelBtn">Cancel</button>
+      <div id="passcodeMsg"></div>
+    </div>
+  </div>
+<script>
+const passcodeCorrect = "2004"; // The passcode you want
+
+const passInput = document.getElementById('passcodeInput');
+const passMsg = document.getElementById('passcodeMsg');
+document.getElementById('enterBtn').onclick = function () {
+  let v = passInput.value.trim();
+  if (v === passcodeCorrect) {
+    passMsg.textContent = "Correct! Redirecting...";
+    setTimeout(function(){
+      window.location.href = "front.html";
+    }, 500); // delay for message
+  } else {
+    passMsg.textContent = "Incorrect Passcode, hint: our anniversary date!";
+  }
+};
+document.getElementById('cancelBtn').onclick = function(){
+  passInput.value = "";
+  passMsg.textContent = "";
+};
+passInput.onkeydown = (e)=>{
+  if(e.key==='Enter'){
+    document.getElementById('enterBtn').click();
+  }
+};
+</script>
+</body>
+</html>
